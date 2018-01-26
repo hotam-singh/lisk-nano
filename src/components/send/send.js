@@ -64,14 +64,17 @@ class Send extends React.Component {
 
   send(event) {
     event.preventDefault();
-    this.props.sent({
-      activePeer: this.props.activePeer,
-      account: this.props.account,
-      recipientId: this.state.recipient.value,
-      amount: this.state.amount.value,
-      passphrase: this.state.passphrase.value,
-      secondPassphrase: this.state.secondPassphrase.value,
-    });
+    if (!this.execued) {
+      this.execued = true;
+      this.props.sent({
+        activePeer: this.props.activePeer,
+        account: this.props.account,
+        recipientId: this.state.recipient.value,
+        amount: this.state.amount.value,
+        passphrase: this.state.passphrase.value,
+        secondPassphrase: this.state.secondPassphrase.value,
+      });
+    }
   }
 
   getMaxAmount() {
